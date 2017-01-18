@@ -1,0 +1,14 @@
+[alias]
+        pr = pull --rebase
+        lga = log --decorate --graph --all --pretty=format:'%Cred%<(15)%an%Creset %Cgreen%<(17)(%ar): %Creset%C(yellow)%h:%Creset%C(auto)%d%Creset %s'
+[core]
+	editor = vim
+[user]
+	name = Guillaume Marques
+	email = marque_o@yaka.epita.fr
+[sendemail]
+	smtpUser = guillaume.marques@epita.fr
+	smtpServer = outlook.office365.com
+	smtpServerPort = 587
+	smtpEncryption = tls
+	suppresscc = self
