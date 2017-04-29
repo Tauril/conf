@@ -17,16 +17,10 @@ call vundle#end()
 filetype plugin indent on
 
 set encoding=utf-8
-syntax on " Enable syntax highlighting
 set backspace=indent,eol,start " Sane backspace behaviour
-set colorcolumn=80
-set expandtab " Insert spaces instead of tabs
-set softtabstop=2
-set shiftwidth=2
 
 " BASICS
-set nocompatible
-syntax on
+syntax on " Enable syntax highlighting
 set number
 set colorcolumn=80
 
@@ -34,8 +28,8 @@ set colorcolumn=80
 set mouse=a
 
 " TABULATIONS
-set expandtab
-set softtabstop=2
+set expandtab " Insert spaces instead of tabs
+set softtabstop=2 " 2 spaces instead of 8
 set shiftwidth=2
 filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
