@@ -5,7 +5,7 @@
 	editor = vim
 [user]
 	name = Guillaume Marques
-	email = marque_o@yaka.epita.fr
+	email = marque_o@acu.epita.fr
 [sendemail]
 	smtpUser = guillaume.marques@epita.fr
 	smtpServer = outlook.office365.com

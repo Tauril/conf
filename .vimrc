@@ -13,6 +13,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -143,3 +144,6 @@ endif
 
 " Search in Visual mode
 vnoremap // y/<C-R>"<CR>
+
+" m4
+:let g:m4_default_quote="[,]"
