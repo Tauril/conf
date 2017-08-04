@@ -85,6 +85,9 @@ colorscheme hybrid
 " colorscheme jellybeans
 " let g:solarized_termcolors=256
 
+" Transparency
+hi Normal guibg=NONE ctermbg=NONE
+
 " Main
 command Main call Main()
 function Main()
@@ -147,3 +150,6 @@ vnoremap // y/<C-R>"<CR>
 
 " m4
 :let g:m4_default_quote="[,]"
+
+
+set exrc
