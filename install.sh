@@ -13,10 +13,12 @@ echo "setxkbmap fr" >> .zshrc
 echo "xrdb -load .Xdefaults" >> .zshrc
 echo "source .xinitrc" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
+echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp .
 
 xrdb ~/.Xdefaults
 
-exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpaper.jpg
+echo "exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpaper.jpg" \
+>> $HOME/.config/i3/config
