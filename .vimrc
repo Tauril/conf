@@ -87,6 +87,7 @@ colorscheme hybrid
 
 " Transparency
 hi Normal guibg=NONE ctermbg=NONE
+hi ColorColumn guibg=NONE ctermbg=DarkYellow
 
 " Main
 command Main call Main()
