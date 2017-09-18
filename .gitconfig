@@ -12,3 +12,5 @@
 	smtpServerPort = 587
 	smtpEncryption = tls
 	suppresscc = self
+[rerere]
+	enabled = true
