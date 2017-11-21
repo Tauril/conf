@@ -5,10 +5,10 @@
 	editor = vim
 [user]
 	name = Guillaume Marques
-	email = marque_o@acu.epita.fr
+	email = marques.guillaume@hotmail.fr
 [sendemail]
-	smtpUser = guillaume.marques@epita.fr
-	smtpServer = outlook.office365.com
+	smtpUser = marques.guillaume@hotmail.fr
+	smtpServer = outlook.com
 	smtpServerPort = 587
 	smtpEncryption = tls
 	suppresscc = self
