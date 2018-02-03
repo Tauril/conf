@@ -121,7 +121,7 @@ function! GnuIndent()
   setlocal shiftwidth=2
 endfunction
 
-map <c-y> 0df:dwi* <Esc>A: Here.<Esc><CR>0
+map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
 
 set cursorline
 
