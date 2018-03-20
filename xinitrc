@@ -1,1 +1,1 @@
-compton -cCGfF -b --config $HOME/.config/compton.conf --vsync opengl
+compton -b --config $HOME/.config/compton.conf --vsync opengl
