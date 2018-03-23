@@ -20,5 +20,5 @@ ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp .
 
 xrdb ~/.Xdefaults
 
-echo "exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpaper.jpg" \
+echo "exec --no-startup-id feh --bg-scale $PWD/cattastic.jpg" \
 >> $HOME/.config/i3/config
