@@ -21,5 +21,5 @@ cd .config && ln -s $HOME/conf/compton.conf .
 
 xrdb ~/.Xdefaults
 
-echo "exec --no-startup-id feh --bg-scale $OLDPWD/cattastic.jpg" \
+echo "exec --no-startup-id feh --bg-fill $OLDPWD/cattastic.jpg" \
 >> $HOME/.config/i3/config
