@@ -15,10 +15,11 @@ echo "source .xinitrc" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
 echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
 cd $HOME
-echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp
-ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp .
+echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
+ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
+cd .config && ln -s $HOME/conf/compton.conf .
 
 xrdb ~/.Xdefaults
 
-echo "exec --no-startup-id feh --bg-scale $PWD/cattastic.jpg" \
+echo "exec --no-startup-id feh --bg-scale $OLDPWD/cattastic.jpg" \
 >> $HOME/.config/i3/config
