@@ -11,7 +11,6 @@ cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 #echo "setxkbmap us -option 'caps:swapescape' -variant altgr-intl" >> .zshrc
 echo "setxkbmap fr -option 'caps:swapescape" >> .zshrc
 echo "xrdb -load .Xdefaults" >> .zshrc
-echo "source .xinitrc" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
 echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
 cd $HOME
@@ -21,5 +20,5 @@ cd .config && ln -s $HOME/conf/compton.conf .
 
 xrdb ~/.Xdefaults
 
-echo "exec --no-startup-id feh --bg-fill $OLDPWD/cattastic.jpg" \
->> $HOME/.config/i3/config
+echo "exec --no-startup-id feh --bg-fill $OLDPWD/cattastic.jpg" >> $PWD/i3/config
+echo "exec --no-startup-id compton -b --config $HOME/.config/compton.conf --vsync opengl" >> $PWD/i3/config
