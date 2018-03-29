@@ -16,9 +16,10 @@ echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
-cd .config && ln -s $HOME/conf/compton.conf .
+cd $OLDPWD
+cd $HOME/.config && ln -s $OLDPWD/compton.conf .
 
 xrdb ~/.Xdefaults
 
 echo "exec --no-startup-id feh --bg-fill $OLDPWD/cattastic.jpg" >> $PWD/i3/config
-echo "exec --no-startup-id compton -b --config $HOME/.config/compton.conf --vsync opengl" >> $PWD/i3/config
+echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
