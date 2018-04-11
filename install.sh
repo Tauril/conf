@@ -23,3 +23,5 @@ xrdb ~/.Xdefaults
 
 echo "exec --no-startup-id feh --bg-fill $OLDPWD/cattastic.jpg" >> $PWD/i3/config
 echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
+# Fixes pixels display error when splitting horizontally
+echo "new_window pixel" >> $PWD/i3/config
