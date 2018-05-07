@@ -154,3 +154,6 @@ vnoremap // y/<C-R>"<CR>
 
 
 set exrc
+
+" Increase vim buffer size
+set viminfo='20,<1000,s1000
