@@ -39,7 +39,6 @@ autocmd FileType make setlocal noexpandtab
 set backspace=eol,indent,start
 set list
 set listchars=tab:>─,trail:\ ,nbsp:¤
-" set cursorline
 
 " SEARCH
 set smartcase
@@ -157,3 +156,5 @@ set exrc
 
 " Increase vim buffer size
 set viminfo='20,<1000,s1000
+
+highlight LineNr term=bold cterm=NONE ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
