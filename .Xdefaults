@@ -16,20 +16,43 @@ xterm*selectToClipboard: true
 *background:   #1d1f21
 *cursorColor:  #aeafad
 *color0:       #000000
-*color1:       #912226
+
+! git current branch
+*color1:       #c12226
+
+! No error
 *color2:       #778900
+
+! git repo not clean
 *color3:       #ae7b00
-*color4:       #1d2594
+
+! Time
+*color4:       #1d5594
+
 *color5:       #682a9b
-*color6:       #2b6651
+
+! Current path
+*color6:       #2b7751
+
 *color7:       #929593
+
 *color8:       #666666
-*color9:       #cc6666
+
+! Error code
+*color9:       #a66666
+
 *color10:      #b5bd68
+
 *color11:      #f0c674
+
+! Directory
 *color12:      #81a2be
+
+! png, etc
 *color13:      #b294bb
+
 *color14:      #8abeb7
+
 *color15:      #ecebec
 
 XTerm.VT100.font: 	-misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
