@@ -6,7 +6,7 @@ setopt glob_dots
 git submodule init
 git submodule update
 
-cp robbyrussell.zsh-theme .oh-my-zsh/themes/
+cp robbyrussell-custom.zsh-theme .oh-my-zsh/themes/
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 #echo "setxkbmap us -option 'caps:swapescape' -variant altgr-intl" >> .zshrc
 echo "setxkbmap fr -option 'caps:swapescape'" >> .zshrc
