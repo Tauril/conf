@@ -13,6 +13,12 @@ sudo apt install vim xterm zsh graphviz compton feh build-essential curl htop \
   libxcb-xinerama0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxcb-xrm-dev     \
   libxkbcommon-x11-dev
 
+echo "Set up zsh as default shell.Log in and out to apply changes."
+chsh -s /bin/zsh
+
+echo "Set up xterm as default term"
+sudo update-alternatives --config x-terminal-emulator
+
 cp robbyrussell-custom.zsh-theme .oh-my-zsh/themes/
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 #echo "setxkbmap us -option 'caps:swapescape' -variant altgr-intl" >> .zshrc
