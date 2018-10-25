@@ -6,6 +6,13 @@ setopt glob_dots
 git submodule init
 git submodule update
 
+echo "Installing dependencies ..."
+sudo apt install vim xterm zsh graphviz compton feh build-essential curl htop \
+  libcairo2-dev bc imagemagick libjpeg-turbo8-dev libpam0g-dev libev-dev      \
+  libxcb-composite0-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util-dev   \
+  libxcb-xinerama0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxcb-xrm-dev     \
+  libxkbcommon-x11-dev
+
 cp robbyrussell-custom.zsh-theme .oh-my-zsh/themes/
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 #echo "setxkbmap us -option 'caps:swapescape' -variant altgr-intl" >> .zshrc
