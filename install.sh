@@ -19,6 +19,10 @@ chsh -s /bin/zsh
 echo "Set up xterm as default term"
 sudo update-alternatives --config x-terminal-emulator
 
+echo "Set lock screen."
+sudo ./betterlockscreen.sh
+betterlockscreen -u $PWD/dbz.png # -r 1920x1200
+
 cp robbyrussell-custom.zsh-theme .oh-my-zsh/themes/
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 #echo "setxkbmap us -option 'caps:swapescape' -variant altgr-intl" >> .zshrc
@@ -33,8 +37,13 @@ cd $HOME/.config && ln -s $OLDPWD/compton.conf .
 
 xrdb ~/.Xdefaults
 
+# Create keybind for the new lock screen
+echo "bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l dim" >> $PWD/i3/config
+# Load custom colors/fonts
 echo "exec --no-startup-id xrdb -load $HOME/.Xdefaults" >> $PWD/i3/config
+# Set background
 echo "exec --no-startup-id feh --bg-fill $OLDPWD/dbz.jpg" >> $PWD/i3/config
+# Set transparency
 echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
 # Fixes pixels display error when splitting horizontally
 echo "new_window pixel" >> $PWD/i3/config
