@@ -157,4 +157,7 @@ set exrc
 " Increase vim buffer size
 set viminfo='20,<1000,s1000
 
+" Increase tab page limit
+set tabpagemax=1000
+
 highlight LineNr term=bold cterm=NONE ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
