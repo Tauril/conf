@@ -155,7 +155,7 @@ vnoremap // y/<C-R>"<CR>
 set exrc
 
 " Increase vim buffer size
-set viminfo='20,<1000,s1000
+set viminfo='20,<100000,s100000
 
 " Increase tab page limit
 set tabpagemax=1000
