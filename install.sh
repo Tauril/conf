@@ -29,6 +29,7 @@ cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 echo "setxkbmap fr -option 'caps:swapescape'" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
 echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
+echo "bindkey \^U backward-kill-line" >> .zshrc
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
