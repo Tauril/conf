@@ -41,6 +41,7 @@ set list
 set listchars=tab:>─,trail:\ ,nbsp:¤
 
 " SEARCH
+set ignorecase
 set smartcase
 set hlsearch
 set incsearch
