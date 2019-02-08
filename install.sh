@@ -30,6 +30,9 @@ echo "setxkbmap fr -option 'caps:swapescape'" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
 echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
 echo "bindkey \^U backward-kill-line" >> .zshrc
+echo "finish() {" >> .zshrc
+echo "spd-say \"finished $1\"" >> .zshrc
+echo "}" >> .zshrc
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
