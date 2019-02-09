@@ -29,10 +29,21 @@ cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 echo "setxkbmap fr -option 'caps:swapescape'" >> .zshrc
 echo "xset r rate 300 50" >> .zshrc
 echo "alias sshfencepost=\"ssh tauril@fencepost.gnu.org\"" >> .zshrc
+
+# ctrl+u remove before cursor
 echo "bindkey \^U backward-kill-line" >> .zshrc
+
+# Beep beep boop
 echo "finish() {" >> .zshrc
 echo "spd-say \"finished $1\"" >> .zshrc
 echo "}" >> .zshrc
+
+# Source every terminal when .zshrc got modified
+echo "precmd() { eval \"\$PROMPT_COMMAND\" }" >> .zshrc
+echo "zshrc_sourced=\$(stat -c %Y $PWD/.zshrc)" >> .zshrc
+echo "PROMPT_COMMAND='test \$(stat -c %Y $PWD/.zshrc) -ne \\
+  \"\$zshrc_sourced\" && source ~/.zshrc'" >> .zshrc
+
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
