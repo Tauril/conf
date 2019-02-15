@@ -7,10 +7,10 @@
 !URxvt*letterSpace: -1
 !URxvt*scrollBar: false
 
-xterm*faceName: xft:DejaVu Sans Mono for Powerline:size=10
-xterm*faceSize: 10
-xterm*utf8: 2
-xterm*selectToClipboard: true
+XTerm*faceName: xft:DejaVu Sans Mono for Powerline:size=10
+XTerm*faceSize: 10
+XTerm*utf8: 2
+XTerm*selectToClipboard: true
 
 *foreground:   #c5c8c6
 *background:   #1d1f21
