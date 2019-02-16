@@ -114,13 +114,6 @@ function Headers()
   exe "normal 4G"
 endfunction
 
-" VCSN
-command GnuIndent call GnuIndent()
-function! GnuIndent()
-  setlocal cinoptions=>4,f0,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+0,(0,u0,w1,m1
-  setlocal shiftwidth=2
-endfunction
-
 map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
 
 set cursorline
@@ -151,7 +144,6 @@ vnoremap // y/<C-R>"<CR>
 
 " m4
 :let g:m4_default_quote="[,]"
-
 
 set exrc
 
