@@ -3,6 +3,7 @@
 	lga = log --decorate --graph --all --pretty=format:'%Cred%<(15)%an%Creset %Cgreen%<(17)(%ar): %Creset%C(yellow)%h:%Creset%C(auto)%d%Creset %s'
 	touched = diff-tree --no-commit-id --name-only -r HEAD
 	amend = commit --amend
+	lease = push --force-with-lease
 [core]
 	editor = vim
 [user]
