@@ -25,6 +25,9 @@ betterlockscreen -u $PWD/dbz.png # -r 1920x1200
 
 cp custom.zsh-theme .oh-my-zsh/themes/
 
+# Enable xterm-256color
+git clone https://github.com/chrissicool/zsh-256color $ZSH_CUSTOM/plugins/zsh-256color
+
 cd $HOME
 echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
 ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .

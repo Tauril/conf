@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="custom"
 
-plugins=(git)
+plugins=(git zsh-256color)
 
 source $ZSH/oh-my-zsh.sh
 
