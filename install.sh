@@ -1,10 +1,16 @@
-#! /bin/zsh
+#! /bin/bash
 
 setopt extendedglob
 setopt glob_dots
 
 git submodule init
 git submodule update
+
+# Root of the installation directory.
+export ROOT=$PWD
+
+# Locally define $ZSH_CUSTOM as it is not yet defined when we execute the script.
+export ZSH_CUSTOM=$ROOT/.oh-my-zsh/custom
 
 echo "Installing dependencies ..."
 sudo apt install vim xterm zsh graphviz compton feh build-essential curl htop \
@@ -21,32 +27,33 @@ sudo update-alternatives --config x-terminal-emulator
 
 echo "Set lock screen."
 sudo ./betterlockscreen.sh
-betterlockscreen -u $PWD/dbz.png # -r 1920x1200
+betterlockscreen -u $ROOT/wallpapers/dbz.jpg # -r 1920x1200
 
-cp custom.zsh-theme .oh-my-zsh/themes/
+cp custom.zsh-theme $ZSH_CUSTOM/themes/
 
-# Enable xterm-256color
+echo "Cloning zsh-256color ..."
 git clone https://github.com/chrissicool/zsh-256color $ZSH_CUSTOM/plugins/zsh-256color
 
-cd $HOME
-echo $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf
-ln -s  $OLDPWD/*~*.git~*.gitmodules~*install.sh~*zsh-theme*~*.swp~*.jpg~*compton.conf .
-cd $OLDPWD
-cd $HOME/.config && ln -s $OLDPWD/compton.conf .
+echo "Creating synbolic links of config files ..."
+ln -s .oh-my-zsh .vim .gitconfig .fonts .vimrc .Xdefaults .zshrc $HOME
+ln -s compton.conf $HOME/.config
 
-xrdb ~/.Xdefaults
+# Apply colorscheme.
+xrdb .Xdefaults
 
 # Create keybind for the new lock screen
-echo "bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l dim" >> $PWD/i3/config
+echo "bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l dim" >> $HOME/.config/i3/config
 
 # Load custom colors/fonts
-echo "exec --no-startup-id xrdb -load $HOME/.Xdefaults" >> $PWD/i3/config
+echo "exec --no-startup-id xrdb -load $HOME/.Xdefaults" >> $HOME/.config/i3/config
 
 # Set background
-echo "exec --no-startup-id feh --bg-fill $OLDPWD/dbz.jpg" >> $PWD/i3/config
+echo "exec --no-startup-id feh --bg-fill $ROOT/wallpapers/dbz.jpg" >> $HOME/.config/i3/config
 
 # Set transparency
-# echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
+# echo "exec --no-startup-id compton -b --config $HOME/.config/compton.conf --vsync opengl" >> $HOME/.config/i3/config
 
 # Fixes pixels display error when splitting horizontally
-echo "new_window pixel" >> $PWD/i3/config
+echo "new_window pixel" >> $HOME/.config/i3/config
+
+echo "Installation complete. You can now close this terminal and open a new one to start working."
