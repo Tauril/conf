@@ -38,11 +38,15 @@ xrdb ~/.Xdefaults
 
 # Create keybind for the new lock screen
 echo "bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l dim" >> $PWD/i3/config
+
 # Load custom colors/fonts
 echo "exec --no-startup-id xrdb -load $HOME/.Xdefaults" >> $PWD/i3/config
+
 # Set background
 echo "exec --no-startup-id feh --bg-fill $OLDPWD/dbz.jpg" >> $PWD/i3/config
+
 # Set transparency
-echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
+# echo "exec --no-startup-id compton -b --config $OLDPWD/compton.conf --vsync opengl" >> $PWD/i3/config
+
 # Fixes pixels display error when splitting horizontally
 echo "new_window pixel" >> $PWD/i3/config

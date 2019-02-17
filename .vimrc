@@ -58,7 +58,6 @@ map <C-S> :wq
 cmap cwd lcd %:p:h
 set autoread
 
-
 " HIGHLIGHT
 highlight link CodingStyle Error
 match CodingStyle /\s\+$\|if(\|for(\|while(\|do{\|switch(/
