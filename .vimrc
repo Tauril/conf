@@ -67,10 +67,19 @@ match CodingStyle /\s\+$\|if(\|for(\|while(\|do{\|switch(/
 
 " COLORSCHEME
 set t_Co=256
+syntax enable
 set background=dark
-colorscheme hybrid
-" colorscheme jellybeans
-" let g:solarized_termcolors=256
+
+let g:solarized_termcolors= 16
+let g:solarized_termtrans = 0
+let g:solarized_degrade = 0
+let g:solarized_bold = 1
+let g:solarized_underline = 1
+let g:solarized_italic = 1
+let g:solarized_contrast = "normal"
+let g:solarized_visibility= "high"
+
+colorscheme solarized
 
 " Transparency
 hi Normal guibg=NONE ctermbg=NONE
