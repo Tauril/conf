@@ -112,10 +112,6 @@ set statusline=%{fugitive#statusline()}%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
 let g:airline_powerline_fonts = 1
 let g:airline_theme='murmur'
 
-" ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 " tagbar
 nmap <F2> :TagbarToggle<CR>
 
