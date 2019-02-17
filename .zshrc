@@ -20,9 +20,3 @@ bindkey \^U backward-kill-line
 finish() {
   spd-say "finished $1"
 }
-
-# Source every timernal when .zshrc gets modified
-precmd() { eval "$PROMPT_COMMAND" }
-zshrc_sourced=$(stat -c %Y ~/set-up-environment/conf/.zshrc)
-PROMPT_COMMAND='test $(stat -c %Y ~/set-up-environment/conf/.zshrc) -ne \
-  $zshrc_sourced && source ~/.zshrc'
