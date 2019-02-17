@@ -14,7 +14,9 @@ xset r rate 300 50
 #alias sshfencepost="ssh tauril@fencepost.gnu.org"
 
 # ctrl+u remove before cursor
-bindkey \^U backward-kill-line
+bindkey '^U' backward-kill-line
+# ctrl_l custom clear-screen defiend in custom zsh theme
+bindkey '^L' _clear-screen
 
 # Beep beep boop
 finish() {

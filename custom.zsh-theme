@@ -29,9 +29,9 @@ autoload -Uz vcs_info
 _silver="%F{7}"
 _grey="%F{8}"
 _green="%F{22}"
-_cyan="%F{36}"
+_spring_green="%F{35}"
 _steel_blue="%F{68}"
-_cadet_blue="%F{73}"
+_light_sea_green="%F{37}"
 _dark_red="%F{88}"
 _dark_olive_green="%F{107}"
 _medium_purple="%F{140}"
@@ -61,7 +61,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 
 # Change branch color and add fancy emote.
 +vi-git_branch() {
-  hook_com[branch]=" %{$_cadet_blue%} ${hook_com[branch]}%{$_reset_color%}"
+  hook_com[branch]=" %{$_light_sea_green%} ${hook_com[branch]}%{$_reset_color%}"
 }
 
 # Check if we are behind the remote.
@@ -107,15 +107,48 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
   fi
 }
 
+# Compute padding to have two strings at both edges of the screen
+_get_space() {
+    local _str=$1$2
+    local _zero='%([BSUbfksu]|([FB]|){*})'
+    local _len=${#${(S%%)_str//$~_zero/}}
+    local _size=$(( $COLUMNS - $_len - 1 ))
+    local _space=""
+    while [[ $_size -gt 0 ]]; do
+        _space="$_space "
+        let _size=$_size-1
+    done
+    echo $_space
+}
+
+# Compute the preprompt.
+_preprompt() {
+  local _user="%{$_grey%}#%{$reset_color%} %{$_dark_red%}%n%{$reset_color%}"
+  local _path="%{$_spring_green%}%~%{$_reset_color%}"
+  local _error_code=":: %(?,%{$_green%},%{$_red%})%?%{$reset_color%}"
+  local _left_preprompt="${_user} ${_path} ${vcs_info_msg_0_} ${_error_code}"
+  local _right_preprompt="(%*)"
+  local _padding="$(_get_space $_left_preprompt $_right_preprompt)"
+  print -rP "$_left_preprompt$_padding$_right_preprompt"
+}
+
 add-zsh-hook precmd vcs_info
+add-zsh-hook precmd _preprompt
 
-local _user="%{$_grey%}#%{$reset_color%} %{$_dark_red%}%n%{$reset_color%}"
-local _path="%{$_cyan%}%~%{$_reset_color%}"
-local _error_code=":: %(?,%{$_green%},%{$_red%})%?%{$reset_color%}"
-local _prompt="%{$_silver%}%(!.#.$)%{$_reset_color%}"
+local _prompt="%{$_silver%}%(!.#.$)%{$_reset_color%} "
 
-# Prompt format:
-# "# USER PATH GIT ERROR_CODE TIME
-#  $                              "
-PROMPT=$'${_user} ${_path} ${vcs_info_msg_0_} ${_error_code}\n${_prompt} '
-RPROMPT='(%*)' # TODO: Essayer de mettre sur la meme ligne que le header
+# Format:
+# "# USER PATH GIT ERROR_CODE TIME" <-- preprompt
+# "$                              " <-- ps1
+PROMPT='${_prompt}'
+
+# Define custom clear screen and add the widget.
+# Clears the screen - Reload vcs_info - Print preprompt - Print prompt
+_clear-screen() {
+  clear
+  vcs_info
+  _preprompt
+  print -rnP "${_prompt}"
+}
+
+zle -N _clear-screen
