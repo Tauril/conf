@@ -19,7 +19,6 @@ set mouse=a
 set expandtab " Insert spaces instead of tabs
 set softtabstop=2 " 2 spaces instead of 8
 set shiftwidth=2
-filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
 
 " BACKSPACES
@@ -85,41 +84,15 @@ colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 hi ColorColumn guibg=NONE ctermbg=DarkCyan
 
-" Main
-command Main call Main()
-function Main()
-  if &filetype == 'cpp'
-    exe "normal iint main()\n{\n\t\n}"
-  else
-    exe "normal iint main(void)\n{\n\t\n}"
-
-  endif
-  exe "normal 3G"
-  exe "a"
-endfunction
-
-" HEADERS
-command Header call Headers()
-function Headers()
-  let basename=substitute(@%, "[^/]*/", "", "g")
-  let underscored=tr(basename, ".", "_")
-  let const=substitute(underscored,".*", "\\U\\0", "")."_"
-  exe "normal i#ifndef ".const."\n\e"
-  exe "normal i# define ".const."\n\n\n\n\e"
-  exe "normal i#endif /"."* !".const." */\e"
-  exe "normal 4G"
-endfunction
-
 map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
 
 set cursorline
 
 " airline
 set laststatus=2
-set encoding=utf-8
-set statusline=%{fugitive#statusline()}%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
 let g:airline_powerline_fonts = 1
-let g:airline_theme='murmur'
+let g:airline_solarized_bg = 'dark'
+let g:airline_theme = 'solarized'
 
 " tagbar
 nmap <F2> :TagbarToggle<CR>
@@ -133,9 +106,6 @@ endif
 
 " Search in Visual mode
 vnoremap // y/<C-R>"<CR>
-
-" m4
-:let g:m4_default_quote="[,]"
 
 set exrc
 
