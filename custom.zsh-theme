@@ -16,9 +16,9 @@
 #  => \uE0A0
 # ✓ => \u2713
 # ↑ => \u2191
-#   => \u21e1
+# ⇡ => \u21e1
 # ↓ => \u2193
-#   => \u21e3
+# ⇣ => \u21e3
 
 setopt PROMPT_SUBST
 
@@ -68,8 +68,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_behind() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    hook_com[branch]+=" %{$_silver%}↓%{$_reset_color%}"
-#    hook_com[branch]+=" %{$_silver%}⇣%{$_reset_color%}"
+    hook_com[branch]+=" %{$_silver%}⇣%{$_reset_color%}"
   fi
 }
 
@@ -77,8 +76,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_ahead() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    hook_com[branch]+=" %{$_silver%}↑%{$_reset_color%}"
-#    hook_com[branch]+=" %{$_silver%}⇡%{$_reset_color%}"
+    hook_com[branch]+=" %{$_silver%}⇡%{$_reset_color%}"
   fi
 }
 
