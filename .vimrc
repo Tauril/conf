@@ -81,8 +81,8 @@ let g:solarized_visibility= "normal"
 colorscheme solarized
 
 " Transparency
-hi Normal guibg=NONE ctermbg=NONE
-hi ColorColumn guibg=NONE ctermbg=DarkCyan
+" hi Normal guibg=NONE ctermbg=NONE
+" hi ColorColumn guibg=NONE ctermbg=DarkCyan
 
 map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
 
