@@ -1,27 +1,14 @@
 set nocompatible
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'rust-lang/rust.vim'
-call vundle#end()
+execute pathogen#infect()
+syntax on " Enable syntax highlighting
 filetype plugin indent on
 
 set encoding=utf-8
 set backspace=indent,eol,start " Sane backspace behaviour
 
 " BASICS
-syntax on " Enable syntax highlighting
 set number
 set colorcolumn=80
 
