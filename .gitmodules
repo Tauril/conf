@@ -1,18 +1,18 @@
 [submodule ".fonts"]
 	path = .fonts
-	url = https://github.com/powerline/fonts.git
+	url = git@github.com:powerline/fonts.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
+	url = git@github.com:robbyrussell/oh-my-zsh.git
 [submodule ".vim/bundle/vim-airline"]
 	path = .vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline.git
+	url = git@github.com:vim-airline/vim-airline.git
 [submodule ".vim/bundle/vim-airline-themes"]
 	path = .vim/bundle/vim-airline-themes
-	url = https://github.com/bling/vim-airline-themes.git
+	url = git@github.com:vim-airline/vim-airline-themes.git
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = git@github.com:altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
+	url = git@github.com:airblade/vim-gitgutter.git
