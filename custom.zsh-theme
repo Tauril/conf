@@ -19,6 +19,7 @@
 # ⇡ => \u21e1
 # ↓ => \u2193
 # ⇣ => \u21e3
+# ● => \u25cf
 
 setopt PROMPT_SUBST
 
@@ -26,8 +27,7 @@ autoload -U add-zsh-hook
 autoload -Uz vcs_info
 
 # Use True color (24-bit)
-_silver="%F{7}"
-_grey="%F{8}"
+_black="%F{0}"
 _green="%F{22}"
 _spring_green="%F{35}"
 _steel_blue="%F{68}"
@@ -38,6 +38,7 @@ _medium_purple="%F{140}"
 _indian_red="%F{167}"
 _light_golden_rod="%F{179}"
 _red="%F{196}"
+_grey="%F{246}"
 
 # Reset color.
 _reset_color="%f"
@@ -68,7 +69,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_behind() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    hook_com[branch]+=" %{$_silver%}⇣%{$_reset_color%}"
+    hook_com[branch]+=" %{$_grey%}⇣%{$_reset_color%}"
   fi
 }
 
@@ -76,7 +77,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_ahead() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    hook_com[branch]+=" %{$_silver%}⇡%{$_reset_color%}"
+    hook_com[branch]+=" %{$_grey%}⇡%{$_reset_color%}"
   fi
 }
 
@@ -121,7 +122,7 @@ _get_space() {
 
 # Compute the preprompt.
 _preprompt() {
-  local _user="%{$_grey%}#%{$reset_color%} %{$_dark_red%}%n%{$reset_color%}"
+  local _user="%{$_black%}#%{$reset_color%} %{$_dark_red%}%n%{$reset_color%}"
   local _path="%{$_spring_green%}%~%{$_reset_color%}"
   local _error_code=":: %(?,%{$_green%},%{$_red%})%?%{$reset_color%}"
   local _left_preprompt="${_user} ${_path} ${vcs_info_msg_0_} ${_error_code}"
@@ -133,7 +134,7 @@ _preprompt() {
 add-zsh-hook precmd vcs_info
 add-zsh-hook precmd _preprompt
 
-local _prompt="%{$_silver%}%(!.#.$)%{$_reset_color%} "
+local _prompt="%{$_grey%}%(!.#.$)%{$_reset_color%} "
 
 # Format:
 # "# USER PATH GIT ERROR_CODE TIME" <-- preprompt
