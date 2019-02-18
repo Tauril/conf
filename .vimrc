@@ -88,9 +88,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = 'dark'
 let g:airline_theme = 'solarized'
 
-" tagbar
-nmap <F2> :TagbarToggle<CR>
-
 " undo persistent
 if version >= 703
   set undofile
