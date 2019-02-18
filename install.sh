@@ -41,8 +41,11 @@ ln -s compton.conf $HOME/.config
 # Apply colorscheme.
 xrdb .Xdefaults
 
-# Create keybind for the new lock screen
-echo "bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l dim" >> $HOME/.config/i3/config
+# Create keybind for the new lock screen.
+# First remove the old keybind of $mod+l
+sed -i ':a;N;$!ba;s/bindsym \$mod+l[^\n]*\n//' $HOME/.config/i3/conf
+# Then append the new bind
+echo "bindsym $mod+l exec --no-startup-id betterlockscreen -l dim" >> $HOME/.config/i3/config
 
 # Load custom colors/fonts
 echo "exec --no-startup-id xrdb -load $HOME/.Xdefaults" >> $HOME/.config/i3/config
