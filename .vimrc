@@ -11,8 +11,7 @@ set backspace=indent,eol,start " Sane backspace behaviour
 " BASICS
 set number
 set colorcolumn=80
-
-" MOUSE
+set cursorline
 set mouse=a
 
 " TABULATIONS
@@ -79,8 +78,6 @@ colorscheme solarized
 " hi ColorColumn guibg=NONE ctermbg=DarkCyan
 
 map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
-
-set cursorline
 
 " airline
 set laststatus=2

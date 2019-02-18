@@ -85,7 +85,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_clean() {
   if [ -z "$(git status --porcelain --ignore-submodules=none)" ]; then
     if [ -z "$(git ls-files --others --modified --exclude-standard)" ]; then
-      hook_com[branch]+=" %{$_dark_olive_green%}✓%{$reset_color%}"
+      hook_com[branch]+=" %{$_dark_olive_green%}✓%{$_reset_color%}"
     fi
   fi
 }
@@ -102,7 +102,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_stash() {
   hook_com[misc]=""
   if [[ -s $(git rev-parse --git-dir)/refs/stash ]]; then
-    hook_com[misc]=" (%{$_medium_purple%}$(git stash list 2>/dev/null | wc -l) stashed%{$reset_color%})"
+    hook_com[misc]=" (%{$_medium_purple%}$(git stash list 2>/dev/null | wc -l) stashed%{$_reset_color%})"
   fi
 }
 
@@ -120,12 +120,23 @@ _get_space() {
     echo $_space
 }
 
+_get_error_code() {
+  local _code=$?
+  if [ $_code -eq 0 ]; then
+    print "%{$_green%}$_code"
+  else
+    print "%{$_red%}$_code"
+  fi
+}
+
 # Compute the preprompt.
 _preprompt() {
-  local _user="%{$_black%}#%{$reset_color%} %{$_dark_red%}%n%{$reset_color%}"
+  # Because we use a preprompt, we need to retrieve the error code at the
+  # beginning.
+  local _error_code=":: $(_get_error_code)%{$_reset_color%}"
+  local _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
   local _path="%{$_spring_green%}%~%{$_reset_color%}"
-  local _error_code=":: %(?,%{$_green%},%{$_red%})%?%{$reset_color%}"
-  local _left_preprompt="${_user} ${_path} ${vcs_info_msg_0_} ${_error_code}"
+  local _left_preprompt="$_user $_path $vcs_info_msg_0_ $_error_code"
   local _right_preprompt="(%*)"
   local _padding="$(_get_space $_left_preprompt $_right_preprompt)"
   print -rP "$_left_preprompt$_padding$_right_preprompt"
@@ -139,7 +150,7 @@ local _prompt="%{$_grey%}%(!.#.$)%{$_reset_color%} "
 # Format:
 # "# USER PATH GIT ERROR_CODE TIME" <-- preprompt
 # "$                              " <-- ps1
-PROMPT='${_prompt}'
+PROMPT='$_prompt'
 
 # Define custom clear screen and add the widget.
 # Clears the screen - Reload vcs_info - Print preprompt - Print prompt
@@ -147,7 +158,7 @@ _clear-screen() {
   clear
   vcs_info
   _preprompt
-  print -rnP "${_prompt}"
+  print -rnP "$_prompt"
 }
 
 zle -N _clear-screen
