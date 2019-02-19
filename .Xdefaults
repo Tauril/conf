@@ -1,6 +1,6 @@
 !Disabled because it does not support some utf-8 characters
-!XTerm*faceName: xft:Source Code Pro for Powerline:style=Semibold:size=10
-XTerm*faceName: xft:DejaVu Sans Mono for Powerline:style=Book:size=10
+XTerm*faceName: xft:Source Code Pro for Powerline:style=Semibold:size=10
+!XTerm*faceName: xft:DejaVu Sans Mono for Powerline:style=Book:size=10
 XTerm*utf8: 2
 XTerm*selectToClipboard: true
 

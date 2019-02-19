@@ -69,7 +69,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_behind() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    hook_com[branch]+=" %{$_grey%}⇣%{$_reset_color%}"
+    hook_com[branch]+=" %{$_grey%}↓%{$_reset_color%}"
   fi
 }
 
@@ -77,7 +77,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 +vi-git_ahead() {
   local _state=$(git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    hook_com[branch]+=" %{$_grey%}⇡%{$_reset_color%}"
+    hook_com[branch]+=" %{$_grey%}↑%{$_reset_color%}"
   fi
 }
 
