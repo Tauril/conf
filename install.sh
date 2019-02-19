@@ -25,6 +25,9 @@ chsh -s /bin/zsh
 echo "Set up xterm as default term"
 sudo update-alternatives --config x-terminal-emulator
 
+echo "Installing fonts"
+cd .fonts && ./install.sh && cd -
+
 echo "Set lock screen."
 sudo ./betterlockscreen.sh
 betterlockscreen -u $ROOT/wallpapers/dbz.jpg # -r 1920x1200
