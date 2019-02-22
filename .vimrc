@@ -84,6 +84,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = 'dark'
 let g:airline_theme = 'solarized'
+let g:airline_section_z = "%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v/%{strwidth(getline('.'))}"
 
 " undo persistent
 if version >= 703
