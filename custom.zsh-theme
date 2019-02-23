@@ -106,51 +106,37 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_loc
   fi
 }
 
+add-zsh-hook precmd vcs_info
+add-zsh-hook precmd _preprompt
+
 # Compute padding to have two strings at both edges of the screen
 _get_space() {
   local _str=$1$2
   local _zero='%([BSUbfksu]|([FB]|){*})'
   local _len=${#${(S%%)_str//$~_zero/}}
-  local _size=$(( $COLUMNS - $_len - 1 ))
-  local _space=""
-  while [[ $_size -gt 0 ]]; do
-    _space="$_space "
-    let _size=$_size-1
-  done
-  echo $_space
-}
-
-_get_error_code() {
-  local _code=$?
-  if [ $_code -eq 0 ]; then
-    print "%{$_green%}$_code"
-  else
-    print "%{$_red%}$_code"
-  fi
+  echo ${(l:COLUMNS - $_len - 1:: :)}
 }
 
 # Compute the preprompt.
 _preprompt() {
-  # Because we use a preprompt, we need to retrieve the error code at the
-  # beginning.
-  _error_code=":: $(_get_error_code)%{$_reset_color%}"
-  _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
-  _path="%{$_spring_green%}%~%{$_reset_color%}"
-  _time="(%*)"
-  _left_preprompt="$_user $_path $vcs_info_msg_0_ $_error_code"
-  _right_preprompt="$_time"
-  _padding="$(_get_space $_left_preprompt $_right_preprompt)"
+  local _error_code=$?
+  local _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
+  local _path="%{$_spring_green%}%~%{$_reset_color%}"
+  local _git="$vcs_info_msg_0_"
+  local _error=":: %(?,%{$_green%},%{$_red%})$_error_code%{$reset_color%}"
+  local _time="(%*)"
+  local _left_preprompt="$_user $_path $_git $_error"
+  local _right_preprompt="$_time"
+  local _padding="$(_get_space $_left_preprompt $_right_preprompt)"
+  _preprompt="$_left_preprompt$_padding$_right_preprompt"
 }
-
-add-zsh-hook precmd vcs_info
-add-zsh-hook precmd _preprompt
 
 local _prompt="%{$_grey%}%(!.#.$)%{$_reset_color%} "
 
 # Format:
 # "# USER PATH GIT ERROR_CODE TIME" <-- preprompt
 # "$                              " <-- ps1
-PROMPT=$'$_user $_path $vcs_info_msg_0_ $_error_code$_padding$_time\n$_prompt'
+PROMPT=$'$_preprompt\n$_prompt'
 
 # Define custom reset-prompt screen and add the widget.
 # This allows the clock to display the actual time a command was executed at.
