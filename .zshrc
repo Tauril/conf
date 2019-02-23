@@ -15,8 +15,6 @@ xset r rate 300 50
 
 # ctrl+u remove before cursor
 bindkey '^U' backward-kill-line
-# ctrl+l custom clear-screen defined in custom zsh theme
-bindkey '^L' _clear-screen
 
 # Beep beep boop
 finish() {

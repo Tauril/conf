@@ -133,13 +133,13 @@ _get_error_code() {
 _preprompt() {
   # Because we use a preprompt, we need to retrieve the error code at the
   # beginning.
-  local _error_code=":: $(_get_error_code)%{$_reset_color%}"
-  local _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
-  local _path="%{$_spring_green%}%~%{$_reset_color%}"
-  local _left_preprompt="$_user $_path $vcs_info_msg_0_ $_error_code"
-  local _right_preprompt="(%*)"
-  local _padding="$(_get_space $_left_preprompt $_right_preprompt)"
-  print -rP "$_left_preprompt$_padding$_right_preprompt"
+  _error_code=":: $(_get_error_code)%{$_reset_color%}"
+  _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
+  _path="%{$_spring_green%}%~%{$_reset_color%}"
+  _time="(%*)"
+  _left_preprompt="$_user $_path $vcs_info_msg_0_ $_error_code"
+  _right_preprompt="$_time"
+  _padding="$(_get_space $_left_preprompt $_right_preprompt)"
 }
 
 add-zsh-hook precmd vcs_info
@@ -150,15 +150,16 @@ local _prompt="%{$_grey%}%(!.#.$)%{$_reset_color%} "
 # Format:
 # "# USER PATH GIT ERROR_CODE TIME" <-- preprompt
 # "$                              " <-- ps1
-PROMPT='$_prompt'
+PROMPT=$'$_user $_path $vcs_info_msg_0_ $_error_code$_padding$_time\n$_prompt'
 
-# Define custom clear screen and add the widget.
-# Clears the screen - Reload vcs_info - Print preprompt - Print prompt
-_clear-screen() {
-  clear
-  vcs_info
-  _preprompt
-  print -rnP "$_prompt"
+# Define custom reset-prompt screen and add the widget.
+# This allows the clock to display the actual time a command was executed at.
+# The accept-line zle is what Enter is bound to by default, so we include it
+# in the custom zle since this is what Enter will be bound to.
+_reset-prompt() {
+  zle reset-prompt
+  zle accept-line
 }
 
-zle -N _clear-screen
+zle -N _reset-prompt
+bindkey '^M' _reset-prompt
