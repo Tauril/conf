@@ -43,29 +43,18 @@ _grey="%F{246}"
 # Reset color.
 _reset_color="%f"
 
-# VCS style formats.
-FMT_STAGED=" %{$_dark_olive_green%}●%{$_reset_color%}"
-FMT_UNSTAGED=" %{$_light_golden_rod%}●%{$_reset_color%}"
-FMT_ACTION="%b (%{$_steel_blue%}%a%{$_reset_color%})%c%u%m"
-FMT_BASIC="%b%c%u%m"
-
 # Git format:
 # "BRANCH REBASE BEHIND AHEAD CLEAN STAGED UNSTAGED UNTRACKED STASH"
-
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr      "${FMT_STAGED}"
-zstyle ':vcs_info:*' unstagedstr    "${FMT_UNSTAGED}"
-zstyle ':vcs_info:*' actionformats  "${FMT_ACTION}"
-zstyle ':vcs_info:*' formats        "${FMT_BASIC}"
-zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_clean git_untrack git_stash
+zstyle ':vcs_info:*' actionformats  "%b (%{$_steel_blue%}%a%{$_reset_color%})%c%m"
+zstyle ':vcs_info:*' formats        "%b%c%m"
+zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_local_status git_stash
 
 # Change branch color and add fancy emote.
 +vi-git_branch() {
   hook_com[branch]=" %{$_light_sea_green%} ${hook_com[branch]}%{$_reset_color%}"
 }
 
-# Check if we are behind or ahead the remote.
 +vi-git_remote_status() {
   # First try to retrieve the remote from upstream.
   local _remote=${$(command git rev-parse --verify ${hook_com[branch_orig]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
@@ -86,43 +75,49 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_cle
   fi
 }
 
-# Check if the repository is clean.
-+vi-git_clean() {
-  if [ -z "$(command git status --porcelain --ignore-submodules=none)" ]; then
-    if [ -z "$(command git ls-files --others --modified --exclude-standard)" ]; then
-      hook_com[branch]+=" %{$_dark_olive_green%}✓%{$_reset_color%}"
++vi-git_local_status() {
+  # Check if the repository is clean.
+  if [[ -z "$(command git status --porcelain --ignore-submodules=none)" &&
+       -z "$(command git ls-files --others --modified --exclude-standard)" ]]; then
+    hook_com[staged]=" %{$_dark_olive_green%}✓%{$_reset_color%}"
+  else
+    local _state=$(command git status --porcelain -b 2> /dev/null)
+    # Check if there are staged elements.
+    if $(echo "$_state" | grep '^[ADCMRU]' &> /dev/null); then
+      hook_com[staged]=" %{$_dark_olive_green%}●%{$_reset_color%}"
     fi
-  fi
-}
-
-# Check if there are untracked elements.
-+vi-git_untrack() {
-  local _state=$(command git status --porcelain -b 2> /dev/null)
-  if $(echo "$_state" | grep -E '^\?\?' &> /dev/null); then
-    hook_com[unstaged]+=" %{$_indian_red%}●%{$_reset_color%}"
+    # Check if there are unstaged elements.
+    if $(echo "$_state" | grep '^.[ADCMRU]' &> /dev/null); then
+      hook_com[staged]+=" %{$_light_golden_rod%}●%{$_reset_color%}"
+    fi
+    # Check if there are untracked elements.
+    if $(echo "$_state" | grep -E '^\?\?' &> /dev/null); then
+      hook_com[staged]+=" %{$_indian_red%}●%{$_reset_color%}"
+    fi
   fi
 }
 
 # Check if there are stashed elements.
 +vi-git_stash() {
-  hook_com[misc]=""
   if [[ -s $(command git rev-parse --git-dir)/refs/stash ]]; then
     hook_com[misc]=" (%{$_medium_purple%}$(git stash list 2>/dev/null | wc -l) stashed%{$_reset_color%})"
+  else
+    hook_com[misc]=""
   fi
 }
 
 # Compute padding to have two strings at both edges of the screen
 _get_space() {
-    local _str=$1$2
-    local _zero='%([BSUbfksu]|([FB]|){*})'
-    local _len=${#${(S%%)_str//$~_zero/}}
-    local _size=$(( $COLUMNS - $_len - 1 ))
-    local _space=""
-    while [[ $_size -gt 0 ]]; do
-        _space="$_space "
-        let _size=$_size-1
-    done
-    echo $_space
+  local _str=$1$2
+  local _zero='%([BSUbfksu]|([FB]|){*})'
+  local _len=${#${(S%%)_str//$~_zero/}}
+  local _size=$(( $COLUMNS - $_len - 1 ))
+  local _space=""
+  while [[ $_size -gt 0 ]]; do
+    _space="$_space "
+    let _size=$_size-1
+  done
+  echo $_space
 }
 
 _get_error_code() {
