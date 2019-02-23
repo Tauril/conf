@@ -58,33 +58,38 @@ zstyle ':vcs_info:*' stagedstr      "${FMT_STAGED}"
 zstyle ':vcs_info:*' unstagedstr    "${FMT_UNSTAGED}"
 zstyle ':vcs_info:*' actionformats  "${FMT_ACTION}"
 zstyle ':vcs_info:*' formats        "${FMT_BASIC}"
-zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_clean git_untrack git_stash
+zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_clean git_untrack git_stash
 
 # Change branch color and add fancy emote.
 +vi-git_branch() {
   hook_com[branch]=" %{$_light_sea_green%} ${hook_com[branch]}%{$_reset_color%}"
 }
 
-# Check if we are behind the remote.
-+vi-git_behind() {
-  local _state=$(git status --porcelain -b 2> /dev/null)
-  if $(echo "$_state" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    hook_com[branch]+=" %{$_grey%}↓%{$_reset_color%}"
+# Check if we are behind or ahead the remote.
++vi-git_remote_status() {
+  # First try to retrieve the remote from upstream.
+  local _remote=${$(command git rev-parse --verify ${hook_com[branch_orig]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+  # If upstream is not set, try to find the remote from the default origin.
+  if [ -z $remote ]; then
+    _remote=${$(command git rev-parse --verify origin/${hook_com[branch_orig]} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
   fi
-}
 
-# Check if we are ahead of the remote.
-+vi-git_ahead() {
-  local _state=$(git status --porcelain -b 2> /dev/null)
-  if $(echo "$_state" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    hook_com[branch]+=" %{$_grey%}↑%{$_reset_color%}"
+  if [ -n $remote ]; then
+    # Are we behind?
+    if [ $(command git rev-list HEAD..$_remote 2>/dev/null | wc -l) -ne 0 ]; then
+      hook_com[branch]+=" %{$_grey%}↓%{$_reset_color%}"
+    fi
+    # Are we ahead?
+    if [ $(command git rev-list $_remote..HEAD 2>/dev/null | wc -l) -ne 0 ]; then
+      hook_com[branch]+=" %{$_grey%}↑%{$_reset_color%}"
+    fi
   fi
 }
 
 # Check if the repository is clean.
 +vi-git_clean() {
-  if [ -z "$(git status --porcelain --ignore-submodules=none)" ]; then
-    if [ -z "$(git ls-files --others --modified --exclude-standard)" ]; then
+  if [ -z "$(command git status --porcelain --ignore-submodules=none)" ]; then
+    if [ -z "$(command git ls-files --others --modified --exclude-standard)" ]; then
       hook_com[branch]+=" %{$_dark_olive_green%}✓%{$_reset_color%}"
     fi
   fi
@@ -92,7 +97,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 
 # Check if there are untracked elements.
 +vi-git_untrack() {
-  local _state=$(git status --porcelain -b 2> /dev/null)
+  local _state=$(command git status --porcelain -b 2> /dev/null)
   if $(echo "$_state" | grep -E '^\?\?' &> /dev/null); then
     hook_com[unstaged]+=" %{$_indian_red%}●%{$_reset_color%}"
   fi
@@ -101,7 +106,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_behind git_ahead git_
 # Check if there are stashed elements.
 +vi-git_stash() {
   hook_com[misc]=""
-  if [[ -s $(git rev-parse --git-dir)/refs/stash ]]; then
+  if [[ -s $(command git rev-parse --git-dir)/refs/stash ]]; then
     hook_com[misc]=" (%{$_medium_purple%}$(git stash list 2>/dev/null | wc -l) stashed%{$_reset_color%})"
   fi
 }
