@@ -20,3 +20,6 @@ bindkey '^U' backward-kill-line
 finish() {
   spd-say "finished $1"
 }
+
+# thefuck
+eval $(thefuck --alias)
