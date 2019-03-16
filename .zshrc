@@ -1,10 +1,7 @@
-# Path to your oh-my-zsh installation.
+# zsh config
 export ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="custom"
-
 plugins=(git zsh-256color)
-
 source $ZSH/oh-my-zsh.sh
 
 #setxkbmap us -option 'caps:swapescape' -variant altgr-intl
@@ -23,3 +20,5 @@ finish() {
 
 # thefuck
 eval $(thefuck --alias)
+
+export PATH=$HOME/.tiger_install/bin:$PATH
