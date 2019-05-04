@@ -111,9 +111,14 @@ add-zsh-hook precmd _preprompt
 
 # Compute padding to have two strings at both edges of the screen
 _get_space() {
-  local _str=$1$2
+  local _venv=""
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local _venv="($(basename $VIRTUAL_ENV)) "
+  fi
+  local _str=$_venv$1$2
   local _zero='%([BSUbfksu]|([FB]|){*})'
   local _len=${#${(S%%)_str//$~_zero/}}
+
   echo ${(l:COLUMNS - $_len - 1:: :)}
 }
 
