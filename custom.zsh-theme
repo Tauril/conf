@@ -118,8 +118,14 @@ _get_space() {
   local _str=$_venv$1$2
   local _zero='%([BSUbfksu]|([FB]|){*})'
   local _len=${#${(S%%)_str//$~_zero/}}
+  local _padding=$(($COLUMNS - $_len - 1))
 
-  echo ${(l:COLUMNS - $_len - 1:: :)}
+  # If we are missing space on the first line, add an extra line
+  if [[ $_padding -lt 0 ]]; then
+    _padding=$(($_padding + $COLUMNS))
+  fi
+
+  echo ${(l:$_padding:: :)}
 }
 
 # Compute the preprompt.
