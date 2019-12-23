@@ -1,0 +1,52 @@
+From 11b88c46cee1d2dbeded0a32756e6eb8999131ae Mon Sep 17 00:00:00 2001
+From: Guillaume Marques <guillaume_marques@apple.com>
+Date: Mon, 23 Dec 2019 18:38:56 +0000
+Subject: [PATCH] update saturated colors
+
+---
+ colors/solarized.vim | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/colors/solarized.vim b/colors/solarized.vim
+index 70f5223..e26db09 100644
+--- a/colors/solarized.vim
++++ b/colors/solarized.vim
+@@ -300,22 +300,22 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
+     let s:green       = "2"
+ elseif g:solarized_termcolors == 256
+     let s:vmode       = "cterm"
+-    let s:base03      = "234"
+-    let s:base02      = "235"
+-    let s:base01      = "239"
+-    let s:base00      = "240"
+-    let s:base0       = "244"
++    let s:base03      = "233" " background
++    let s:base02      = "235" " column/row selector
++    let s:base01      = "247" " comments
++    let s:base00      = "243"
++    let s:base0       = "254" " code
+     let s:base1       = "245"
+     let s:base2       = "187"
+     let s:base3       = "230"
+-    let s:yellow      = "136"
+-    let s:orange      = "166"
+-    let s:red         = "124"
+-    let s:magenta     = "125"
+-    let s:violet      = "61"
+-    let s:blue        = "33"
+-    let s:cyan        = "37"
+-    let s:green       = "64"
++    let s:yellow      = "142"
++    let s:orange      = "208"
++    let s:red         = "196"
++    let s:magenta     = "161"
++    let s:violet      = "63"
++    let s:blue        = "39"
++    let s:cyan        = "44"
++    let s:green       = "76"
+ else
+     let s:vmode       = "cterm"
+     let s:bright      = "* term=bold cterm=bold"
+-- 
+2.21.0 (Apple Git-122.2)
+

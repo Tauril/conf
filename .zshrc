@@ -1,24 +1,18 @@
 # zsh config
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="custom"
-plugins=(git zsh-256color)
+plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
-#setxkbmap us -option 'caps:swapescape' -variant altgr-intl
-setxkbmap gb -option 'caps:swapescape'
-xset r rate 300 50
-
-#alias sshfencepost="ssh tauril@fencepost.gnu.org"
 
 # ctrl+u remove before cursor
 bindkey '^U' backward-kill-line
 
-# Beep beep boop
-finish() {
-  spd-say "finished $1"
-}
+export SDKROOT=`xcrun -sdk macosx.internal --show-sdk-path`
 
-# thefuck
-eval $(thefuck --alias)
+export PATH="$PATH":/Users/guillaumemarques/Arcanist/arcanist/bin
+export EDITOR=/usr/bin/vim
 
-export PATH=$HOME/.tiger_install/bin:$PATH
+svngrep() { grep  --color=always --exclude-dir=".svn" -r $1 $2 $3 | less -R; }
+
+eval `ssh-agent -s`
+ssh-add

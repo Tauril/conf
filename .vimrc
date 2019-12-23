@@ -61,7 +61,7 @@ set autoread
 syntax enable
 set background=dark
 
-let g:solarized_termcolors = 16
+let g:solarized_termcolors = 256
 let g:solarized_termtrans = 0
 let g:solarized_degrade = 0
 let g:solarized_bold = 1
@@ -81,7 +81,6 @@ map <c-y> 0df:dwi* <Esc>A: here.<Esc><CR>0
 
 " airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = 'dark'
 let g:airline_theme = 'solarized'
 let g:airline_section_z = "%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v/%{strwidth(getline('.'))}"

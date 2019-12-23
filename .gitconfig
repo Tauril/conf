@@ -8,12 +8,6 @@
 	editor = vim
 [user]
 	name = Guillaume Marques
-	email = marques.guillaume@hotmail.fr
-[sendemail]
-	smtpUser = marques.guillaume@hotmail.fr
-	smtpServer = outlook.com
-	smtpServerPort = 587
-	smtpEncryption = tls
-	suppresscc = self
+	email = guillaume_marques@apple.com
 [rerere]
 	enabled = true

@@ -27,7 +27,7 @@ autoload -U add-zsh-hook
 autoload -Uz vcs_info
 
 # Use True color (24-bit)
-_black="%F{0}"
+_black="%F{238}"
 _green="%F{22}"
 _spring_green="%F{35}"
 _steel_blue="%F{68}"
@@ -52,7 +52,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_loc
 
 # Change branch color and add fancy emote.
 +vi-git_branch() {
-  hook_com[branch]=" %{$_light_sea_green%} ${hook_com[branch]}%{$_reset_color%}"
+  hook_com[branch]="%{$_light_sea_green%}${hook_com[branch]}%{$_reset_color%}"
 }
 
 +vi-git_remote_status() {
@@ -66,11 +66,11 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_branch git_remote_status git_loc
   if [ -n $remote ]; then
     # Are we behind?
     if [ $(command git rev-list HEAD..$_remote 2>/dev/null | wc -l) -ne 0 ]; then
-      hook_com[branch]+=" %{$_grey%}↓%{$_reset_color%}"
+      hook_com[branch]+=" %{$_grey%}⇣%{$_reset_color%}"
     fi
     # Are we ahead?
     if [ $(command git rev-list $_remote..HEAD 2>/dev/null | wc -l) -ne 0 ]; then
-      hook_com[branch]+=" %{$_grey%}↑%{$_reset_color%}"
+      hook_com[branch]+=" %{$_grey%}⇡%{$_reset_color%}"
     fi
   fi
 }
@@ -131,7 +131,7 @@ _get_space() {
 # Compute the preprompt.
 _preprompt() {
   local _error_code=$?
-  local _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}%n%{$_reset_color%}"
+  local _user="%{$_black%}#%{$_reset_color%} %{$_dark_red%}Tauril%{$_reset_color%}"
   local _path="%{$_spring_green%}%~%{$_reset_color%}"
   local _git="$vcs_info_msg_0_"
   local _error=":: %(?,%{$_green%},%{$_red%})$_error_code%{$reset_color%}"
