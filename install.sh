@@ -32,7 +32,7 @@ echo "Set lock screen."
 sudo ./betterlockscreen.sh
 betterlockscreen -u $ROOT/wallpapers/dbz.jpg # -r 1920x1200
 
-cp custom.zsh-theme $ZSH_CUSTOM/themes/
+ln -s custom.zsh-theme $ZSH_CUSTOM/themes/
 
 echo "Cloning zsh-256color ..."
 git clone https://github.com/chrissicool/zsh-256color $ZSH_CUSTOM/plugins/zsh-256color
