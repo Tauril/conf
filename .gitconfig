@@ -4,6 +4,8 @@
 	touched = diff-tree --no-commit-id --name-only -r HEAD
 	amend = commit --amend
 	lease = push --force-with-lease
+	dump-intel = "!git log --pretty=format:"%h%x09%an%x09%cd%x09%s" --reverse $1..HEAD > foo.csv"
+	diff-intel = "!git log --pretty=format:"%=>%h%x09%an%x09%cd%x09%s" --reverse -p $1..HEAD"
 [core]
 	editor = vim
 [user]
