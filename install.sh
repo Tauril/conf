@@ -27,6 +27,6 @@ echo "Creating synbolic links of config files ..."
 ln -s $ROOT/.oh-my-zsh $ROOT/.vim $ROOT/.gitconfig $ROOT/.vimrc $ROOT/.zshrc $HOME
 
 echo "Applying vim patch"
-cd .vim/bundles/vim-colors-solarized && git apply $ROOT/0001-update-saturated-colors.patch && cd -
+cd $ROOT/.vim/bundle/vim-colors-solarized && git apply $ROOT/0001-update-saturated-colors.patch && cd -
 
 echo "Installation complete. You can now close this terminal and open a new one to start working."
