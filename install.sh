@@ -30,3 +30,5 @@ echo "Applying vim patch"
 cd $ROOT/.vim/bundle/vim-colors-solarized && git apply $ROOT/0001-update-saturated-colors.patch && cd -
 
 echo "Installation complete. You can now close this terminal and open a new one to start working."
+
+# TODO: Install thefuck
