@@ -20,15 +20,16 @@ echo "Set up xterm as default term"
 
 ln -s $ROOT/custom.zsh-theme $ZSH_CUSTOM/themes/
 
+echo "Installing thefuck"
+brew install thefuck
+
 echo "Cloning zsh-256color ..."
 #git clone https://github.com/chrissicool/zsh-256color $ZSH_CUSTOM/plugins/zsh-256color
 
-echo "Creating synbolic links of config files ..."
+echo "Creating symbolic links of config files ..."
 ln -s $ROOT/.oh-my-zsh $ROOT/.vim $ROOT/.gitconfig $ROOT/.vimrc $ROOT/.zshrc $HOME
 
 echo "Applying vim patch"
 cd $ROOT/.vim/bundle/vim-colors-solarized && git apply $ROOT/0001-update-saturated-colors.patch && cd -
 
 echo "Installation complete. You can now close this terminal and open a new one to start working."
-
-# TODO: Install thefuck

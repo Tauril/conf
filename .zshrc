@@ -16,5 +16,7 @@ svngrep() { grep  --color=always --exclude-dir=".svn" -r $1 $2 $3 | less -R; }
 
 beep() { afplay /System/Library/Sounds/Purr.aiff -v 10 }
 
+eval $(thefuck --alias)
+
 eval `ssh-agent -s`
 ssh-add
