@@ -20,6 +20,9 @@ echo "Set up xterm as default term"
 
 ln -s $ROOT/custom.zsh-theme $ZSH_CUSTOM/themes/
 
+echo "Installing brew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 echo "Installing thefuck"
 brew install thefuck
 
