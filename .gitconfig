@@ -13,3 +13,14 @@
 	email = guillaume_marques@apple.com
 [rerere]
 	enabled = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[fetch]
+	recurseSubmodules = on-demand
+[diff]
+	submodule = log
+[status]
+	submoduleSummary = true
