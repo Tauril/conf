@@ -104,3 +104,5 @@ set viminfo='20,<100000,s100000
 set tabpagemax=1000
 
 highlight LineNr term=bold cterm=NONE ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+
+au BufRead,BufNewFile *.metal setfiletype metal
