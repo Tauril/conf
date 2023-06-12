@@ -130,11 +130,11 @@
 	<key>VisualBellOnlyWhenMuted</key>
 	<false/>
 	<key>columnCount</key>
-	<integer>230</integer>
+	<integer>250</integer>
 	<key>name</key>
 	<string>apple</string>
 	<key>rowCount</key>
-	<integer>63</integer>
+	<integer>65</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
