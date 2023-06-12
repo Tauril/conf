@@ -36,4 +36,7 @@ ln -s $ROOT/.oh-my-zsh $ROOT/.vim $ROOT/.gitconfig $ROOT/.vimrc $ROOT/.zshrc $HO
 echo "Applying vim patch"
 cd $ROOT/.vim/bundle/vim-colors-solarized && git apply $ROOT/0001-update-saturated-colors.patch && cd -
 
+echo "Copying Intel One Mono font to ~Library/Fonts ..."
+cp intel-one-mono-otf/*.otf $HOME/Library/Fonts/
+
 echo "Installation complete. You can now close this terminal and open a new one to start working."
