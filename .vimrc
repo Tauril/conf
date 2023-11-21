@@ -16,8 +16,8 @@ set mouse=a
 
 " TABULATIONS
 set expandtab " Insert spaces instead of tabs
-set softtabstop=2 " 2 spaces instead of 8
-set shiftwidth=2
+set softtabstop=4 " 2 spaces instead of 8
+set shiftwidth=4
 autocmd FileType make setlocal noexpandtab
 
 " BACKSPACES
