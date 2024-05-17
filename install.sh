@@ -20,12 +20,12 @@ echo "Set up xterm as default term"
 
 ln -s $ROOT/custom.zsh-theme $ZSH_CUSTOM/themes/
 
-echo "Installing brew"
-sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#echo "Installing brew"
+#sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions
+#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo "Installing thefuck"
-brew install thefuck
+#echo "Installing thefuck"
+#brew install thefuck
 
 echo "Cloning zsh-256color ..."
 #git clone https://github.com/chrissicool/zsh-256color $ZSH_CUSTOM/plugins/zsh-256color
