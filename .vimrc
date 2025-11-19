@@ -95,6 +95,9 @@ endif
 " Search in Visual mode
 vnoremap // y/<C-R>"<CR>
 
+" Always copy to clipboard
+nnoremap yy "+yy
+
 set exrc
 
 " Increase vim buffer size
