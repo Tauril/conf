@@ -97,6 +97,7 @@ vnoremap // y/<C-R>"<CR>
 
 " Always copy to clipboard
 nnoremap yy "+yy
+vnoremap y "+y
 
 set exrc
 
