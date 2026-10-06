@@ -6,6 +6,7 @@
 	lease = push --force-with-lease
 	current = branch --show-current
 	pr-cur = !CURRENT=$(git current) && git pull --rebase origin $CURRENT
+	pr-cur-nrs = !CURRENT=$(git current) && git pull --rebase --no-recurse-submodules origin $CURRENT
 	push-cur = !CURRENT=$(git current) && git push origin $CURRENT
 	lease-cur = !CURRENT=$(git current) && git push --force-with-lease origin $CURRENT
 	dump-intel = "!git log --pretty=format:"%h%x09%an%x09%cd%x09%s" --reverse $1..HEAD > foo.csv"
