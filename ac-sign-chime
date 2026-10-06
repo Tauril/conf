@@ -1,0 +1,6 @@
+#!/bin/sh
+# Git signs commits through this (`gpg.x509.program` in .gitconfig). It chimes when git asks for a
+# signature (`-bsau`), since ac-sign's Touch ID prompt comes next, and stays quiet when git only
+# verifies one.
+case " $* " in *" -bsau "*) /usr/bin/afplay /System/Library/Sounds/Glass.aiff >/dev/null 2>&1 & ;; esac
+exec /usr/local/bin/ac-sign "$@"

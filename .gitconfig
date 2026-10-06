@@ -29,3 +29,9 @@
 	submodule = log
 [status]
 	submoduleSummary = true
+[gpg]
+	format = x509
+[commit]
+	gpgsign = true
+[gpg "x509"]
+	program = ~/set-up-environment/conf/ac-sign-chime
