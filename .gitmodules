@@ -16,3 +16,6 @@
 [submodule "Awayke"]
 	path = Awayke
 	url = https://github.com/daemonphantom/Awayke.git
+[submodule "MenuBarStats"]
+	path = MenuBarStats
+	url = git@github.pie.apple.com:guillaume-marques/MenuBarStats.git
