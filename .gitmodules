@@ -19,3 +19,6 @@
 [submodule "MenuBarStats"]
 	path = MenuBarStats
 	url = git@github.pie.apple.com:guillaume-marques/MenuBarStats.git
+[submodule "GitSigning"]
+	path = GitSigning
+	url = git@github.pie.apple.com:guillaume-marques/GitSigning.git
